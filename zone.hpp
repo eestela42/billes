@@ -17,6 +17,8 @@ class zone
 		zone(int x1, int x2, int y1, int y2);
 		bool	is_in(bille *bille);
 		void	place(bille *bille);
+		void	apply_force_on_all(vector v);
+		void	apply_force_on_all(int x, int y, int ratio);
 };
 
 #endif

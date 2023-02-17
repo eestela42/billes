@@ -1,4 +1,4 @@
-#include "cluster.hpp"
+#include "zone.hpp"
 
 zone::zone(int x1, int x2, int y1, int y2)
 {
@@ -16,9 +16,11 @@ zone::~zone()
 {
 }
 
-bool	zone::is_in()
+bool	zone::is_in(bille* bille)
 {
-	if (bille->get_x() >= dimension[0] && bille->get_x() <= dimension[1] && bille->get_y() >= dimension[2] && bille->get_y() <= dimension[3])
+	int x = bille->get_x();
+	int y = bille->get_y();
+	if (x >= dimension[0] && x <= dimension[1] && y >= dimension[2] && y <= dimension[3])
 		return (1);
 	return (0);
 };
@@ -36,4 +38,19 @@ void	zone::place(bille *bille)
 		next[2]->place(bille);
 	else if (next[3] && next[3]->is_in(bille))
 		next[3]->place(bille);
+}
+
+void	zone::apply_force_on_all(vector v)
+{
+	for (std::vector<bille*>::iterator it = content.begin(); it != content.end(); it++)
+		(*it)->apply_force(v);
+}
+
+void zone::apply_force_on_all(int x, int y, int ratio)
+{
+	for (std::vector<bille*>::iterator it = content.begin(); it != content.end(); it++)
+	{
+		vector v2((*it)->get_x() - x, (*it)->get_y() - y);
+		(*it)->apply_force(v2);
+	}
 }

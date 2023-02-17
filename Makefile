@@ -2,9 +2,9 @@ NAME = Billes
 
 CC = g++
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 
-SRC = *.cpp
+SRC = main.cpp bille.cpp vector.cpp zone.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
